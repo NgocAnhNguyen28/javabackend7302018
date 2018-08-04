@@ -29,10 +29,21 @@ import java.util.Scanner;
         System.out.println("3. Cong nhan");
         System.out.print("Chon kieu nhan vien can them: ");
         int luaChon = new Scanner(System.in).nextInt();  // khởi tạo giá trị của biến truyền vào
-        if (luaChon < 1 || luaChon > 3) {    // tạo ra điều kiện cho giá trị nếu khác các giá trị 123 thì quay lại hàm loai nhan vien
+        //if(luaChon <1 || luaChon >3){    // tạo ra điều kiện cho giá trị nếu khác các giá trị 123 thì quay lại hàm loai nhan vien
+         //   return loaiNhanVien();
+        //}
+        //return luaChon;  // ham trả lại giá trị người dùng chọn?
+        try{
+            if(luaChon<1 || luaChon > 3){
+            throw new LoaiNhanVienE();
+            } 
             return loaiNhanVien();
+            
+        }catch(LoaiNhanVienE e){
+            System.out.println(e.getMessage());
+        }finally{
+            return luaChon;
         }
-        return luaChon;  // ham quay lại lựa chọn?
     }
 
     public INhanVien[] nhapDanhSach() {    // hàm với kiểu mảng nhân viên của class nhân viên  
@@ -45,10 +56,12 @@ import java.util.Scanner;
             switch (loaiNhanVien) {// kiểm tra loại nhan viên
                 case QUAN_LY: //case 1:
                     dsNhanvien[i] = new QuanLy(); // mảng danh sách nhân viên theo thứ tự i dược khởi tạo bằng hàm quản lý
+                    break;
                 case NHAN_VIEN_VAN_PHONG:
                     dsNhanvien[i] = new NhanVienVanPhong();
+                    break;
                 default:
-                    dsNhanvien[i] =new CongNhan();
+                    dsNhanvien[i] =new CongNhan(); break;
             }
             System.out.println("Nhap thong tin nhan vien thu " + i);
             dsNhanvien[i].nhapThongTin(); // mảng danh sách nhân viên nhập theo tổng số nhân viên nhập vào chạy hàm nhập thông tin
@@ -59,7 +72,7 @@ import java.util.Scanner;
 
     public void hienThongTinNhanVien(INhanVien[] dsNhanVien) {// hàm hiện thông tin với mảng danh sách nhân viên của mảng nhân viên nhập vào
         if (dsNhanVien != null) { // nếu mảng khác null
-            for (INhanVien nhanVien : dsNhanVien) {//
+            for (INhanVien nhanVien : dsNhanVien) {
                 if (nhanVien != null) {
                     nhanVien.hienThongTin();
                     System.out.println("------------------------------------");
@@ -67,7 +80,7 @@ import java.util.Scanner;
 
             }
         } else {
-            System.out.println("Danh sach rong");
+            System.out.println("Danh sách rỗng");
         }
     }
 

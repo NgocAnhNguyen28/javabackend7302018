@@ -61,13 +61,15 @@ public class QuanLy extends NhanVien{
         }else if(soNhanVien>20){
             this.phuCap =2000; 
         }
+       
+            float thuNhap = this.getTienLuong()+ this.getPhuCap();
         
-        float thuNhap = this.tienLuong+ this.getPhuCap();
+        
         return tienLuong;
     }
     
     public void hienThogTin(){
-         super.hienThongTin();
+        super.hienThongTin();
         System.out.println("tien luong cua nhan vien la"+ this.tienLuong);
             }
     

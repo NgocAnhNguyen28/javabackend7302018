@@ -40,7 +40,7 @@ public class NhanVienVanPhong extends NhanVien{
 
     @Override
     public float tinhThuNhap() {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
         float thuNhap = this.getTienLuong() + this.getHeSo()*this.getTienLuong();
         return thuNhap;
       

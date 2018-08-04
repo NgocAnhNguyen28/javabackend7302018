@@ -6,6 +6,8 @@
 package NhanVien;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,8 +51,15 @@ public abstract class NhanVien  implements INhanVien{
         return tienLuong;
     }
 
-    public void setTienLuong(float tienLuong) {
-        this.tienLuong = tienLuong;
+    public void setTienLuong(float tienLuong) throws Exception {
+        if(tienLuong> 0 ){
+            this.tienLuong = tienLuong;
+        }else{
+            TienLuongE tienLuongE = new TienLuongE();
+;            throw tienLuongE;
+            
+        }
+      
     }
 
     public NhanVien() {
@@ -73,13 +82,20 @@ public abstract class NhanVien  implements INhanVien{
     
     @Override
     public void nhapThongTin(){
-        System.out.println("nhap ten cua cong nhan: ");
-        this.ten = new Scanner(System.in).nextLine();
-        System.out.println("nhap gioi tinh( 1:nam,0: nu, -1: chua xac dinh");
-        int gt = new Scanner(System.in).nextInt();
-        this.gioiTinh = GioiTinh.hienThiGioiTinh(gt);
-        System.out.println("nhap so luong cua cong nhan");
-        this.tienLuong = new Scanner(System.in).nextInt();
+        
+            System.out.println("nhap ten cua cong nhan: ");
+            this.ten = new Scanner(System.in).nextLine();
+            System.out.println("nhap gioi tinh( 1:nam,0: nu, -1: chua xac dinh");
+            int gt = new Scanner(System.in).nextInt();
+            this.gioiTinh = GioiTinh.hienThiGioiTinh(gt);
+            try{
+                System.out.println("nhap so luong cua cong nhan");
+                this.tienLuong = new Scanner(System.in).nextInt();
+                this.setTienLuong(tienLuong);
+            } catch (Exception ex) {
+                Logger.getLogger(NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
+        }
         
     }
         
