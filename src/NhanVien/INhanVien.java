@@ -15,7 +15,7 @@ public interface INhanVien {
     
     void nhapThongTin();
     
-   public float tinhThuNhap();
+    public float tinhThuNhap();
 
     public GioiTinh getGioiTinh();
     
